@@ -387,8 +387,8 @@ def leaf_function(fn: Callable[_P, _R]) -> Callable[_P, _R]:
                   return model(x)  # model passed as argument
 
     Restrictions:
-        - Inputs must use pytree-compatible types. User-defined classes must be
-          registered via :func:`torch.utils._pytree.register_pytree_node`,
+        - Both inputs and outputs must use pytree-compatible types. User-defined classes
+          must be registered via :func:`torch.utils._pytree.register_pytree_node`,
           :func:`torch.utils._pytree.register_dataclass`, or
           :func:`torch.utils._pytree.register_constant`. Tensors, Python primitives
           (int, float, bool, str), and built-in containers (list, tuple, dict) are
@@ -396,10 +396,6 @@ def leaf_function(fn: Callable[_P, _R]) -> Callable[_P, _R]:
           specialized per call site: different call sites can use different values,
           but each call site expects the same primitives and structure on every
           execution.
-
-        - Outputs must be a tuple of tensors, e.g., ``return (tensor,)`` or
-          ``return (tensor1, tensor2)``. The fake_impl must return a tuple with
-          the same structure.
 
     Example:
         # Example 1: External library call
