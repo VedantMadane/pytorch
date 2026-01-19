@@ -51,6 +51,12 @@ verify_correctness = False
 # [@compile_ignored: debug]
 debug_backend_override: str = os.environ.get("TORCH_COMPILE_OVERRIDE_BACKENDS", "")
 
+# Validate that fake_fn and real_fn in @leaf_function decorators produce outputs
+# with matching shapes and dtypes in eager mode. Helps catch mismatches early.
+# Disabled by default to avoid runtime overhead.
+# [@compile_ignored: debug]
+leaf_function_validate_outputs = False
+
 # need this many ops to create an FX graph (deprecated: not used)
 minimum_call_count = 1
 
